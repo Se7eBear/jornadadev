@@ -1,6 +1,4 @@
 FUNCTION Main()
-	QOut("Linha 1") //pula linha ao final
-	Qout("")
-	QQOut("Sem ") // Nao puka
-	QQOut("Pular Linha")
+	LOCAL cNome := "Seven"
+	QOut("Nome: " + cNome)
 RETURN NIL
