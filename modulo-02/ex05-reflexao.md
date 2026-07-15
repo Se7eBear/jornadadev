@@ -1,0 +1,1 @@
+Porque o computador faz exatamente o que voce pediu a ele, ou seja, se vc pedir para ele adicionar +1 em 0 enquanto 0 for maior que -1, ele vai adicionar +1 infinitamente, e isso nao significa que ele errou, mas sim que a ordem que vc deu para ele executar nao fazia sentido.
