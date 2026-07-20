@@ -9,7 +9,7 @@ FUNCTION Exercicio3()
 
 	dNasc := CToD(cDataNasc)
 	nPreco := Val(cPreco)
-	nIdade := Int( (Date() - dNasc) / 365 )
+	nIdade := Int((Date() - dNasc) / 365)
 	IF nIdade > 60
 		nDesconto := nPreco * 0.125
 	ENDIF
