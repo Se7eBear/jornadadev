@@ -1,54 +1,33 @@
 FUNCTION Main()
-	LOCAL cNome, cDisc, cNota1, cNota2, cContinuar
-	LOCAL nNota1, nNota2, nMedia
+	LOCAL cNome, cDisc, cAux := "S", n1, n2
 
-	DO WHILE .T.
-		DO WHILE .T.
-			ACCEPT "Digite o nome do aluno: " TO cNome
-			IF Len(AllTrim(cNome)) > 0
-				EXIT
-			ENDIF
-			QOut("Erro: O nome nao pode ser vazio.")
+	DO WHILE Upper(AllTrim(cAux)) == "S"
+		cNome := ""
+		cDisc := ""
+		n1 := -1
+		n2 := -1
+
+		DO WHILE Empty(cNome)
+			ACCEPT "Nome do aluno: " TO cNome
 		ENDDO
 
-		DO WHILE .T.
-			ACCEPT "Digite a disciplina (ex: MAT, POR): " TO cDisc
-			cDisc := AllTrim(cDisc)
-			IF Len(cDisc) == 3 .AND. cDisc == Upper(cDisc)
-				EXIT
-			ENDIF
-			QOut("Erro: A disciplina deve ter exatamente 3 letras maiusculas.")
+		DO WHILE Len(AllTrim(cDisc)) != 3
+			ACCEPT "Disciplina (3 letras): " TO cDisc
 		ENDDO
 
-		DO WHILE .T.
-			ACCEPT "Digite a primeira nota (0 a 10): " TO cNota1
-			nNota1 := Val(cNota1)
-			IF (nNota1 != 0 .OR. AllTrim(cNota1) == "0") .AND. nNota1 >= 0 .AND. nNota1 <= 10
-				EXIT
-			ENDIF
-			QOut("Erro: Nota invalida. Digite um numero de 0 a 10.")
+		DO WHILE n1 < 0 .OR. n1 > 10
+			ACCEPT "Primeira nota (0-10): " TO cAux
+			n1 := IIf(Val(cAux) == 0 .AND. AllTrim(cAux) != "0", -1, Val(cAux))
 		ENDDO
 
-		DO WHILE .T.
-			ACCEPT "Digite a segunda nota (0 a 10): " TO cNota2
-			nNota2 := Val(cNota2)
-			IF (nNota2 != 0 .OR. AllTrim(cNota2) == "0") .AND. nNota2 >= 0 .AND. nNota2 <= 10
-				EXIT
-			ENDIF
-			QOut("Erro: Nota invalida. Digite um numero de 0 a 10.")
+		DO WHILE n2 < 0 .OR. n2 > 10
+			ACCEPT "Segunda nota (0-10): " TO cAux
+			n2 := IIf(Val(cAux) == 0 .AND. AllTrim(cAux) != "0", -1, Val(cAux))
 		ENDDO
 
-		nMedia := (nNota1 + nNota2) / 2
-
-		QOut("")
-		QOut("Nome: ", cNome, " | Disciplina: ", cDisc, " | Media: ", nMedia)
-		QOut("")
-
-		ACCEPT "Deseja calcular outro? (S/N): " TO cContinuar
-		IF Upper(AllTrim(cContinuar)) != "S"
-			EXIT
-		ENDIF
-		QOut("")
+		QOut("Nome: ", AllTrim(cNome), " | Disc: ", Upper(cDisc), " | Media: ", (n1 + n2) / 2)
+		
+		ACCEPT "Calcular outro? (S/N): " TO cAux
 	ENDDO
 	
 RETURN NIL
